@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { ScanProvider } from "@/context/ScanContext"; // ajoute cette ligne
+import { ScanProvider } from "@/context/ScanContext";
+import { Footer } from "@/components/Footer"; // <-- ajoute cet import
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
@@ -22,9 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col`}
       >
-        <ScanProvider>{children}</ScanProvider>
+        <ScanProvider>
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </ScanProvider>
       </body>
     </html>
   );
